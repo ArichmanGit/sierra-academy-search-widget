@@ -2,24 +2,43 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Link Admin Panel</title>
-        <link rel="stylesheet" href="admin.css" />
-        <script type="text/javascript">
-            var correctPassword = "Tr@!ningFTW"; // Change to your actual password.
+        <title>Admin Panel</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
 
-            var password = prompt(
-                "Please enter the password to access this page:",
-                "",
-            );
-            if (password != correctPassword) {
-                window.location = "https://example.com/"; // Redirect on incorrect password
-            }
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+                apiKey: "AIzaSyCig2p7R4TWzqZJ64Aak78CEvTZQp6_NlQ",
+                authDomain: "sierra-academy-search-widget.firebaseapp.com",
+                databaseURL:
+                    "https://sierra-academy-search-widget-default-rtdb.firebaseio.com",
+                projectId: "sierra-academy-search-widget",
+                storageBucket: "sierra-academy-search-widget.appspot.com",
+                messagingSenderId: "323879817380",
+                appId: "1:323879817380:web:c0f3e2df03bbdbae335631",
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
         </script>
+        <script src="admin.js"></script>
     </head>
     <body>
-        <h1>Manage Links</h1>
-        <div>
-            <h2>Add New Link</h2>
+        <div id="loginDiv">
+            <input type="email" id="email" placeholder="Enter email" />
+            <input type="password" id="password" placeholder="Enter password" />
+            <button onclick="login()">Login</button>
+        </div>
+
+        <div id="adminContent" style="display: none">
+            <h1>Add New Link</h1>
             <form id="linkForm">
                 <input
                     type="text"
@@ -41,14 +60,7 @@
                 />
                 <button type="submit">Add Link</button>
             </form>
+            <div id="statusMessage"></div>
         </div>
-        <div>
-            <h2>Edit Existing Links</h2>
-            <ul id="linksList"></ul>
-        </div>
-
-        <div id="statusMessage"></div>
-
-        <script src="admin.js"></script>
     </body>
 </html>

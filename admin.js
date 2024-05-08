@@ -1,3 +1,23 @@
+// Handle the user login
+function login() {
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("password").value;
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Login successful, hide login form and show admin content
+      document.getElementById("loginDiv").style.display = "none";
+      document.getElementById("adminContent").style.display = "block";
+    })
+    .catch((error) => {
+      console.error("Login Failed:", error);
+      alert("Login failed: " + error.message);
+    });
+}
+
+// Add event listener to form for adding links
 document
   .getElementById("linkForm")
   .addEventListener("submit", function (event) {
@@ -9,55 +29,22 @@ document
       .value.split(",")
       .map((tag) => tag.trim().toLowerCase());
     addLink(title, url, tags);
-    displayLinks(); // Refresh list after adding
   });
 
-function loadLinks() {
-  return JSON.parse(localStorage.getItem("links") || "[]");
-}
-
-function saveLinks(links) {
-  localStorage.setItem("links", JSON.stringify(links));
-  displayLinks(); // Refresh list after save
-}
-
+// Function to add links to Firestore
 function addLink(title, url, tags) {
-  let links = loadLinks();
-  links.push({ title, url, tags });
-  saveLinks(links);
-  document.getElementById("linkForm").reset();
+  db.collection("links")
+    .add({
+      title: title,
+      url: url,
+      tags: tags,
+    })
+    .then(() => {
+      console.log("Document successfully written!");
+      alert("Link added successfully!");
+      // Optionally clear form fields or display links
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
 }
-
-function editLink(index) {
-  let links = loadLinks();
-  let link = links[index];
-  let newTitle = prompt("Update the title", link.title);
-  let newUrl = prompt("Update the URL", link.url);
-  let newTags = prompt(
-    "Update the tags (comma-separated)",
-    link.tags.join(", "),
-  );
-
-  if (newTitle != null) link.title = newTitle;
-  if (newUrl != null) link.url = newUrl;
-  if (newTags != null)
-    link.tags = newTags.split(",").map((tag) => tag.trim().toLowerCase());
-
-  links[index] = link;
-  saveLinks(links);
-}
-
-function displayLinks() {
-  const links = loadLinks();
-  const list = document.getElementById("linksList");
-  list.innerHTML = "";
-
-  links.forEach((link, index) => {
-    const listItem = document.createElement("li");
-    listItem.innerHTML = `${link.title} - <button onclick="editLink(${index})">Edit</button>`;
-    list.appendChild(listItem);
-  });
-}
-
-// Initially display all links
-document.addEventListener("DOMContentLoaded", displayLinks);
