@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Example Site",
+    "url": "https://example.com",
+    "tags": ["technology", "innovation"]
+  },
+  {
+    "title": "Learning Programming",
+    "url": "https://example2.com",
+    "tags": ["programming", "tutorial"]
+  }
+]

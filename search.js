@@ -5,7 +5,9 @@ document.getElementById('searchBox').addEventListener('keyup', function(event) {
 });
 
 function loadDatabase() {
-    return Promise.resolve(JSON.parse(localStorage.getItem('links') || '[]'));
+    return fetch('data.json')
+           .then(response => response.json())
+           .catch(error => console.error("Failed to load data:", error));
 }
 
 function search() {
