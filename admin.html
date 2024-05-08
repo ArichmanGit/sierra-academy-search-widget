@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Link Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <h1>Add New Link</h1>
+    <form id="linkForm">
+        <input type="text" id="titleField" placeholder="Enter title" required>
+        <input type="url" id="urlField" placeholder="Enter URL" required>
+        <input type="text" id="tagsField" placeholder="Enter tags separated by commas" required>
+        <button type="submit">Add Link</button>
+    </form>
+    <div id="statusMessage"></div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

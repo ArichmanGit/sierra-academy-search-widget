@@ -1,0 +1,17 @@
+/* Since admin styles may overlap, they can be minimal or identical to styles.css in this simple setup */
+body {
+    background-color: #fff; /* Ensure a neutral background */
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+input[type="text"], input[type="url"], button {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    width: 95%; /* Make full use of the container width */
+}
+button {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+}
