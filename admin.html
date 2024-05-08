@@ -5,36 +5,48 @@
         <title>Link Admin Panel</title>
         <link rel="stylesheet" href="admin.css" />
         <script type="text/javascript">
-            var correctPassword = "Tr@!ningFTW"; // You should change this to your actual password.
+            var correctPassword = "Tr@!ningFTW"; // Change to your actual password.
 
             var password = prompt(
                 "Please enter the password to access this page:",
                 "",
             );
             if (password != correctPassword) {
-                window.location = "https://example.com/"; // Redirect them to another URL if the password is wrong
-                // Alternatively, you can use window.location.href to direct to a different page or just display an error message.
+                window.location = "https://example.com/"; // Redirect on incorrect password
             }
         </script>
     </head>
     <body>
-        <h1>Add New Link</h1>
-        <form id="linkForm">
-            <input
-                type="text"
-                id="titleField"
-                placeholder="Enter title"
-                required
-            />
-            <input type="url" id="urlField" placeholder="Enter URL" required />
-            <input
-                type="text"
-                id="tagsField"
-                placeholder="Enter tags separated by commas"
-                required
-            />
-            <button type="submit">Add Link</button>
-        </form>
+        <h1>Manage Links</h1>
+        <div>
+            <h2>Add New Link</h2>
+            <form id="linkForm">
+                <input
+                    type="text"
+                    id="titleField"
+                    placeholder="Enter title"
+                    required
+                />
+                <input
+                    type="url"
+                    id="urlField"
+                    placeholder="Enter URL"
+                    required
+                />
+                <input
+                    type="text"
+                    id="tagsField"
+                    placeholder="Enter tags separated by commas"
+                    required
+                />
+                <button type="submit">Add Link</button>
+            </form>
+        </div>
+        <div>
+            <h2>Edit Existing Links</h2>
+            <ul id="linksList"></ul>
+        </div>
+
         <div id="statusMessage"></div>
 
         <script src="admin.js"></script>
