@@ -59,12 +59,19 @@ function displayResults(results) {
     return;
   }
   results.forEach((result) => {
-    const element = document.createElement("div");
+    const resultItem = document.createElement("div");
+    resultItem.className = "result-item";
+
     const link = document.createElement("a");
     link.href = result.url;
     link.textContent = result.title;
     link.target = "_blank"; // Open links in a new tab
-    element.appendChild(link);
-    resultsContainer.appendChild(element);
+
+    const description = document.createElement("p");
+    description.textContent = `Tags: ${result.tags.join(", ")}`;
+
+    resultItem.appendChild(link);
+    resultItem.appendChild(description);
+    resultsContainer.appendChild(resultItem);
   });
 }

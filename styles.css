@@ -1,25 +1,98 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
     padding: 20px;
-    line-height: 1.6;
     background-color: #ffffff;
 }
-input,
-button {
-    margin: 10px 0;
-    padding: 8px;
-    width: 300px;
+
+h1 {
+    color: #333;
+    text-align: center;
 }
+
+input[type="text"],
 button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    max-width: 500px;
+    font-size: 1em;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
     cursor: pointer;
+    border-radius: 5px;
 }
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.loading-indicator {
+    display: none;
+    text-align: center;
+    margin-top: 20px;
+    color: #007bff;
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    margin: 10px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 #results {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-a {
-    color: blue;
+
+.result-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 500px;
+    padding: 15px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.result-item:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.result-item a {
     text-decoration: none;
+    color: #007bff;
+    font-size: 1.1em;
+    display: block;
 }
-a:hover {
+
+.result-item a:hover {
     text-decoration: underline;
+}
+
+.result-item p {
+    margin: 5px 0 0;
+    color: #555;
 }
