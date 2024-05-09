@@ -8,7 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function loadDatabase() {
-  // Replace 'YOUR_WEB_APP_URL_HERE' with the actual URL of your Google Apps Script Web App
+  const loadingIndicator = document.getElementById("loadingIndicator");
+  loadingIndicator.style.display = "block"; // Show loading indicator
+
   return fetch(
     "https://script.google.com/macros/s/AKfycby8MzdykN1pKBvJMmZPl10OtwlpCTcXoJEWaFNORXMegvzHChGbx1Yt6L4Rg34j2A61Ag/exec",
   )
@@ -28,6 +30,9 @@ function search() {
   const searchTerm = document.getElementById("searchBox").value.toLowerCase();
   loadDatabase()
     .then((data) => {
+      const loadingIndicator = document.getElementById("loadingIndicator");
+      loadingIndicator.style.display = "none"; // Hide loading indicator
+
       if (!data) {
         // Check if data is null from error handling in loadDatabase
         console.error("No data received or error in fetching data.");
@@ -40,6 +45,8 @@ function search() {
     })
     .catch((error) => {
       console.error("Error processing data:", error);
+      const loadingIndicator = document.getElementById("loadingIndicator");
+      loadingIndicator.style.display = "none"; // Hide loading indicator on error
     });
 }
 
