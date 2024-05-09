@@ -22,15 +22,17 @@ function loadDatabase() {
     })
     .catch((error) => {
       console.error("Failed to load data:", error);
+      loadingIndicator.style.display = "none"; // Hide on error
       return null; // Return null to handle errors gracefully
     });
 }
 
 function search() {
   const searchTerm = document.getElementById("searchBox").value.toLowerCase();
+  const loadingIndicator = document.getElementById("loadingIndicator");
+
   loadDatabase()
     .then((data) => {
-      const loadingIndicator = document.getElementById("loadingIndicator");
       loadingIndicator.style.display = "none"; // Hide loading indicator
 
       if (!data) {
@@ -45,7 +47,6 @@ function search() {
     })
     .catch((error) => {
       console.error("Error processing data:", error);
-      const loadingIndicator = document.getElementById("loadingIndicator");
       loadingIndicator.style.display = "none"; // Hide loading indicator on error
     });
 }
